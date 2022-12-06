@@ -1,4 +1,4 @@
-import { useState , useRef } from 'react'
+import { useState , useRef , useEffect } from 'react'
 import './App.css'
 import Contact from "./Components/Contact"
 import { v4 as chave } from 'uuid'
@@ -28,7 +28,7 @@ function App() {
     //Check if it already has this entry.
     let duplicity = contactList.find((ct)=> ct.name===contact.name && ct.telephone===contact.telephone)
     if (typeof duplicity !== "undefined") {
-      alert ("⚠️This contact is already on the list")
+      alert ("⚠️This contact is already on the list!")
       inputTelephone.current.focus()
       return
     }
@@ -38,13 +38,26 @@ function App() {
 
     setContact({name: "" , telephone:""})
     inputName.current.focus()
-
-
   }
 
-  function teste (event){
-    console.log(event)
+  function clearStorage(){
+    
   }
+
+  // State persistence
+
+  useEffect(()=>{
+    if(localStorage.getItem('my_contacts') !== null){
+      setContactList(JSON.parse(localStorage.getItem('my_contacts')))
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('my_contacts' , JSON.stringify(contactList))
+  },[contactList])
+
+
+ 
 
   return (
     <>
@@ -56,10 +69,11 @@ function App() {
       </div>
       <div>
       <label>Telephone:</label> <br />
-          <input type = "text" ref ={inputTelephone} onChange = {defineTelephone} onKeyUp={teste} value = {contact.telephone} />
+          <input type = "text" ref ={inputTelephone} onChange = {defineTelephone}  value = {contact.telephone} />
       </div>
       <div>
           <button onClick={addContact} > Add contact </button>
+          <button onClick={clearStorage} > Clear </button>
         </div>
         
         <hr />

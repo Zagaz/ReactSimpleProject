@@ -1,14 +1,10 @@
-import React from "react"
-//import { v4 as chave } from 'uuid'
+import React from "react";
 
-export default function ContactList (props){
-    return (
-       
-        <div>
-            {props.name} {props.telephone}
-            </div>
-     
-          
-      
-    )
+export default function Contact(props) {
+  return (
+    <div>
+      {props.name} - {props.telephone}
+      <button onClick={props.remove}> Remove </button>
+    </div>
+  );
 }
