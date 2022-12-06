@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+.title{
+  padding : 20px;
+  background-color: rgb( 27 , 42 , 74 );
+  color : white;
+
+}
+.theform{
+  background-color: rgb( 44 , 61 , 98 ) ;
+  color : white;
+  
+
+}
+
+
+
+
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
