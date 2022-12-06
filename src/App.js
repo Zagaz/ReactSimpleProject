@@ -7,7 +7,7 @@ import { v4 as chave } from 'uuid'
 
 function App() {
   //useState
-  const [contact , setContact] = useState({ name: "" , telephone: ""})
+  const [contact , setContact] = useState({id : "" , name: "" , telephone: ""  })
   const [contactList , setContactList] = useState([])
   //useRef
   const inputName = useRef()
@@ -34,7 +34,7 @@ function App() {
     }
     
     //Add new contact
-    setContactList([...contactList, contact])
+    setContactList([...contactList, {...contact, id: chave()}])
 
     setContact({name: "" , telephone:""})
     inputName.current.focus()
@@ -59,14 +59,12 @@ function App() {
 
   //Remove item from list
 
-  function removeContact(ctRemove) {
-    let temp = contactList.filter(ct => ct.name !== ctRemove.name && ct.telephone !== ctRemove.telephone )
+  function removeContact(id) {
+    let temp = contactList.filter(ct => ct.id !== id )
+
     setContactList(temp)
     
   }
-
-
-
   return (
     <>
       <h1>My Awesome Contact List</h1>
@@ -87,7 +85,7 @@ function App() {
         <hr />
        {/* Contact list  */}
           {contactList.map(ct =>{
-            return <Contact name={ct.name} telephone ={ct.telephone} key = {chave()} remove ={removeContact}/>
+            return <Contact name={ct.name} telephone ={ct.telephone} key = {ct.id} id = {ct.id} remove ={removeContact}/>
           })}
        
   
