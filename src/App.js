@@ -40,9 +40,6 @@ function App() {
     inputName.current.focus()
   }
 
-  function clearStorage(){
-    
-  }
 
   // State persistence
 
@@ -56,8 +53,19 @@ function App() {
     localStorage.setItem('my_contacts' , JSON.stringify(contactList))
   },[contactList])
 
+  function clearStorage(){
+   setContactList([])
+  }
 
- 
+  //Remove item from list
+
+  function removeContact(ctRemove) {
+    let temp = contactList.filter(ct => ct.name !== ctRemove.name && ct.telephone !== ctRemove.telephone )
+    setContactList(temp)
+    
+  }
+
+
 
   return (
     <>
@@ -79,7 +87,7 @@ function App() {
         <hr />
        {/* Contact list  */}
           {contactList.map(ct =>{
-            return <Contact name={ct.name} telephone ={ct.telephone} key = {chave()}/>
+            return <Contact name={ct.name} telephone ={ct.telephone} key = {chave()} remove ={removeContact}/>
           })}
        
   
