@@ -67,7 +67,7 @@ function App() {
   }
   return (
     <>
-      <h1>My Awesome Contact List</h1>
+      <h1 className='text-center'>My Awesome React Contact List</h1>
       <hr />
       <div>
         <label >Name:</label> <br />
