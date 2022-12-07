@@ -1,7 +1,10 @@
+import  ReactDOM from "react-dom";
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Contact from "./Components/Contact";
 import { v4 as chave } from "uuid";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faList , faUser , faTrash , faCirclePlus} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   //useState
@@ -68,7 +71,8 @@ function App() {
       <div className="container-fluid title">
         <div className="row">
           <div className="col text-center">
-            <h4 className="text-center">MY AWESOME REACT CONTACT LIST</h4>
+            <h4 className="text-center">   MY AWESOME REACT CONTACT LIST </h4>
+           
           </div>
         </div>
       </div>
@@ -105,6 +109,7 @@ function App() {
                       className="btn btn-outline-warning"
                       onClick={clearStorage}
                     >
+                      <FontAwesomeIcon icon = {faTrash} />
                       {" "}
                       Clear{" "}
                     </button>
@@ -113,9 +118,8 @@ function App() {
                     <button
                       className="btn btn-outline-info"
                       onClick={addContact}
-                    >
-                      {" "}
-                      Add{" "}
+                    >  <FontAwesomeIcon icon = {faCirclePlus} />
+                      {' '} Add
                     </button>
                   </div>
                 </div>
